@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mind Probe 2026 – Registration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:400 18px/1.5 "DM Sans",system-ui,sans-serif;color:#1b2030;min-height:100vh;
+}
+html{background:#050403}
+body::before{content:"";position:fixed;left:0;top:0;width:100%;height:400vh;z-index:-1;pointer-events:none;will-change:transform;
+ background:linear-gradient(180deg,#050403 0%,#3a1d0a 12.5%,#9a7412 25%,#3a1d0a 37.5%,#050403 50%,#3a1d0a 62.5%,#9a7412 75%,#3a1d0a 87.5%,#050403 100%);
+ animation:metal 45s linear infinite}
+@keyframes metal{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+:focus-visible{outline:3px solid #9cc6ff;outline-offset:2px}
+/* ---- liquid glass buttons ---- */
+.glass,.cat,.nav button{cursor:pointer;color:#fff;text-decoration:none;font:500 17px "DM Sans",sans-serif;border-radius:999px;
+ border:1px solid rgba(255,255,255,.4);
+ background:linear-gradient(135deg,rgba(255,255,255,.3),rgba(255,255,255,.07) 55%,rgba(255,255,255,.2));
+ -webkit-backdrop-filter:blur(16px) saturate(180%);backdrop-filter:blur(16px) saturate(180%);
+ box-shadow:inset 0 1.5px 1px rgba(255,255,255,.7),inset 0 -1px 2px rgba(255,255,255,.2),0 8px 22px rgba(0,0,0,.28);
+ transition:transform .15s,box-shadow .15s}
+.glass:active,.cat:active,.nav button:active{transform:scale(.96)}
+.glass{display:inline-block;padding:18px 34px;text-transform:uppercase;min-width:150px;text-align:center}
+.nav button,.cat.on,.dk{background:linear-gradient(135deg,rgba(96,66,28,.92),rgba(26,15,7,.86));border-color:rgba(255,255,255,.28);
+ box-shadow:inset 0 1.5px 1px rgba(255,255,255,.4),inset 0 -1px 2px rgba(0,0,0,.4),0 8px 20px rgba(20,26,48,.35)}
+.cat{color:#1b2030;background:linear-gradient(135deg,rgba(255,255,255,.9),rgba(190,198,222,.45));border-color:rgba(130,140,170,.5);
+ box-shadow:inset 0 1.5px 1px #fff,inset 0 -1px 2px rgba(120,130,160,.3),0 6px 16px rgba(30,40,70,.15)}
+.cat.on{color:#fff}
+/* ---- layout ---- */
+.top{display:flex;align-items:center;gap:14px;padding:26px 7vw}
+.top img{height:52px;width:auto;display:none}
+.hero{min-height:calc(100vh - 104px);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;padding:20px 7vw 60px}
+.hero img{display:block;width:min(560px,86vw);height:auto;max-height:46vh;object-fit:contain}
+.tag{font-size:18px;text-transform:uppercase;line-height:1.55;max-width:30ch;margin:44px 0 60px;letter-spacing:.02em}
+.hb{display:flex;gap:14px;justify-content:center;width:min(520px,100%)}
+.hb .glass{flex:1 1 0;min-width:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px 12px}
+#registration{padding:30px 5vw 70px;display:flex;justify-content:center}
+.card{background:#fff;width:min(560px,100%);border-radius:36px;padding:48px 8%;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.card h2{font-size:clamp(38px,9vw,54px);line-height:1.1;margin:0 0 22px;font-weight:500;letter-spacing:-.02em}
+.note{text-transform:uppercase;font-size:17px;margin:0 0 40px}
+.note a{color:#0000ee;text-decoration:none}
+.card h3{font-size:clamp(26px,6vw,34px);font-weight:400;text-decoration:underline;text-underline-offset:5px;margin:0 0 34px;line-height:1.5}
+label{display:block;margin-bottom:12px}
+.fld{margin-bottom:26px}
+input,select{font:inherit;font-size:18px;width:100%;padding:16px 20px;border:1px solid #dfe3ee;border-radius:10px;background:#fff;color:#1b2030}
+input::placeholder{color:#7b86a4}
+.cats{display:grid;gap:16px}
+.cat{padding:16px;font-size:19px}
+.nav{display:flex;gap:16px;justify-content:flex-end;margin-top:44px}
+.nav button{font-size:19px;padding:19px 0;flex:1;max-width:210px}
+.nav .solo{flex:0 1 165px}
+.msg{min-height:26px;margin:18px 0 0;font-weight:700;font-size:16px}
+.ok{color:#0a7a3d}.err{color:#b3261e}
+.done{text-align:center;padding:30px 0}
+/* ---- footer ---- */
+footer{color:#fff;padding:20px 7vw 40px;text-align:center}
+footer h2{font-weight:500;font-size:30px;margin:0 0 22px}
+.cl{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:900px;margin:0 auto 28px}
+.ct{border-radius:24px;padding:20px;text-align:left;border:1px solid rgba(255,255,255,.3);background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,255,255,.05));
+ -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:inset 0 1.5px 1px rgba(255,255,255,.5)}
+.ct b{display:block;font-size:20px}.ct span{opacity:.8;display:block;margin-bottom:8px}
+.ct a{color:#fff;display:block;word-break:break-all}
+.ll{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.ll .glass{min-width:0;padding:12px 22px;text-transform:none;font-size:16px}
+dialog{border:0;border-radius:28px;padding:26px;width:min(520px,94vw);max-height:90vh}
+dialog::backdrop{background:rgba(0,0,0,.65)}
+dialog h2{margin:0 0 16px;font-size:26px}
+dialog h4{margin:18px 0 8px;font-size:17px}
+dialog .fld{margin-bottom:10px}
+dialog input{padding:11px 14px;font-size:16px;margin-bottom:6px}
+dialog .nav{margin-top:14px;justify-content:flex-start}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+[hidden]{display:none!important}
+.dk{display:inline-block;padding:14px 26px}
+.loc{margin:18px 0 0;opacity:.9;font-size:17px}
+.glass.sm{padding:12px 24px;min-width:0;margin-top:16px;font-size:15px}
+#eventmap{padding:20px 6vw 50px;text-align:center;color:#fff}
+#eventmap h2{font-weight:500;font-size:30px;margin:0 0 8px}
+#eventmap p{margin:0 0 20px;opacity:.85}
+.mapbox{max-width:900px;margin:0 auto 20px;border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.4);box-shadow:inset 0 1.5px 1px rgba(255,255,255,.6),0 20px 50px rgba(0,0,0,.4)}
+.mapbox iframe{width:100%;height:380px;border:0;display:block}
+.mapbox img{width:100%;display:block;background:#fff}
+textarea{font:inherit;font-size:16px;width:100%;min-height:90px;padding:11px 14px;border:1px solid #dfe3ee;border-radius:10px;margin-bottom:6px}
+html{scroll-behavior:smooth}
+.cl:empty{display:none}
+#clubAddr{margin:0 0 16px;font-size:18px}
+#mbtn{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:16px;z-index:50;width:54px;height:54px;min-width:0;padding:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:7px}
+#mbtn span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:transform .25s}
+#mbtn.open span:first-child{transform:translateY(4.5px) rotate(45deg)}
+#mbtn.open span:last-child{transform:translateY(-4.5px) rotate(-45deg)}
+#menu{position:fixed;top:calc(78px + env(safe-area-inset-top,0px));right:16px;z-index:50;width:min(290px,calc(100vw - 32px));padding:10px;border-radius:28px;display:grid;gap:4px;border:1px solid rgba(255,255,255,.4);background:linear-gradient(135deg,rgba(76,52,24,.75),rgba(18,11,5,.8));-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);box-shadow:inset 0 1.5px 1px rgba(255,255,255,.5),0 18px 40px rgba(0,0,0,.45)}
+#menu a{color:#fff;text-decoration:none;padding:14px 18px;border-radius:18px;font-size:18px}
+#menu a:hover{background:rgba(255,255,255,.14)}
+#menu a.reg{background:linear-gradient(135deg,#f6dc8c,#d4af37 50%,#a67c0c);color:#2a1a05;border:1px solid rgba(255,238,175,.8);font-weight:700;box-shadow:inset 0 1.5px 1px rgba(255,255,255,.65),0 4px 14px rgba(160,120,10,.4)}
+#menu a.reg:hover{background:linear-gradient(135deg,#fae7a6,#e0bb48 50%,#b98a10)}
+#faq{padding:40px 6vw 60px;color:#fff;max-width:780px;margin:0 auto}
+#faq h2{font-weight:500;font-size:clamp(38px,9vw,60px);line-height:1.05;margin:0 0 26px;letter-spacing:-.02em}
+#faq h2 span{display:block;opacity:.6}
+.chip{display:inline-flex;align-items:center;gap:14px;padding:14px 32px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(6,10,20,.7);font-size:20px;margin-bottom:26px}
+#faq .intro{opacity:.7;margin:0 0 34px;font-size:19px;line-height:1.8}
+#faqList details{background:rgba(6,8,14,.82);border:1px solid rgba(255,255,255,.14);border-radius:30px;margin-bottom:18px;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+#faqList summary{list-style:none;cursor:pointer;padding:30px 26px 30px 32px;font-size:20px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+#faqList summary::-webkit-details-marker{display:none}
+#faqList summary::after{content:"+";font-size:34px;font-weight:300;line-height:1}
+#faqList details[open] summary::after{content:"\00d7"}
+#faqList details p{margin:0;padding:0 32px 30px;opacity:.75;line-height:1.7}
+.ttl{margin:0;font-weight:800;text-transform:uppercase;font-size:clamp(64px,22vw,150px);line-height:.9;letter-spacing:-.02em}
+.ttl span{display:block;font-size:.42em;letter-spacing:.06em;margin-top:.18em}
+button,input,select,textarea{font-family:"DM Sans",system-ui,sans-serif}
+</style>
+</head>
+<body>
+<button type="button" class="glass" id="mbtn" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+<nav id="menu" hidden>
+ <a href="#registration" class="reg">Register</a>
+ <a href="#" id="mRules" target="_blank" rel="noopener">Rules &amp; regulations</a>
+ <a href="#faq" id="mFaq">FAQ</a>
+ <a href="#contactus">Contact us</a>
+</nav>
+<header class="top"><img id="logo1" alt="Logo"><img id="logo2" alt="Logo"></header>
+
+<section class="hero">
+ <img id="hero" alt="Mind Probe 2026" style="display:none">
+ <h1 class="ttl" id="ttl">Mind<span>Probe'26</span></h1>
+ <p class="tag">The ultimate odyssey for unique excellence.<br>The largest quiz day organized by a school in Sri Lanka</p>
+ <div class="hb">
+  <a class="glass" href="#registration">Register now</a>
+  <a class="glass" id="rules" href="#" target="_blank" rel="noopener">Rules &amp; regulations</a>
+ </div>
+</section>
+
+<section id="registration">
+ <div class="card" id="card">
+  <h2>Registration</h2>
+  <p class="note">All questions are required. For any inquiry <a id="contact" href="#contactus">contact us</a>.</p>
+  <form id="f" novalidate>
+   <h3 id="st"></h3>
+   <div id="body"></div>
+   <p class="msg" id="msg" role="status"></p>
+   <div class="nav"><button type="button" id="prev">Previous</button><button type="submit" id="next">Next</button></div>
+  </form>
+ </div>
+</section>
+
+<section id="faq" hidden>
+ <h2>Frequently<span>Asked Questions</span></h2>
+ <div class="chip">FAQ</div>
+ <p class="intro">Have questions? Our FAQ section has you covered with quick answers to the most common inquiries.</p>
+ <div id="faqList"></div>
+</section>
+
+<footer id="contactus">
+ <div id="cwrap" hidden><h2>Contact us</h2><div class="cl" id="cl"></div>
+  <div id="mapWrap" hidden><p id="clubAddr" hidden></p>
+   <div class="mapbox"><iframe id="mapFrame" title="Quiz club location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" hidden></iframe></div>
+   <a class="glass" id="mapDir" target="_blank" rel="noopener" href="#" style="display:none">Get directions</a></div>
+ </div>
+ <div class="ll" id="ll"></div>
+</footer>
+
+<dialog id="dlg">
+ <h2>Admin login panel</h2>
+ <form id="af">
+  <div class="fld"><label for="pw">Password</label><input type="password" id="pw" autocomplete="current-password"></div>
+  <div id="edit" style="display:none;overflow:auto;max-height:55vh;padding:2px"></div>
+  <div class="nav"><button type="submit" id="abtn">Log in</button><button type="button" id="close">Close</button></div>
+  <p class="msg" id="amsg" role="status"></p>
+ </form>
+</dialog>
+
+<script>
+// ===== Paste your Apps Script web app URL here =====
+var API = "https://script.google.com/macros/s/AKfycbwthWh-7wrM0vCFM-yRmMmtxEFP_Nho7TtrL0s7UtvB2VviREtCHRnGDj1CEPXPlywn/exec";
+// ===================================================
+var $ = function (id) { return document.getElementById(id); };
+function fixImg(u) {
+ var m = /drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=view&)?id=)([\w-]+)/.exec(u || "");
+ return m ? "https://drive.google.com/thumbnail?id=" + m[1] + "&sz=w1600" : u;
+}
+function esc(t) { return String(t || "").replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+function safeUrl(u) { return /^(https?:|mailto:|tel:|#)/i.test(u || "") ? u : ""; }
+function list(v) { try { var a = JSON.parse(v); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
+
+function embedSrc(v) { var m = /src=["']([^"']+)["']/.exec(v || ""), u = m ? m[1] : (v || "").trim(); return /^https:\/\/(www\.)?google\.com\/maps\/embed/.test(u) ? u : ""; }
+var DEF_FAQ = [{ q: "How to register for Mind Probe?", a: "Tap Register Now, complete every step of the form and submit it." }, { q: "Who can take part?", a: "Each team has four members: a captain and three more students. Choose the Junior or Senior category when you register." }];
+function extra() {
+ $("mRules").href = safeUrl(cfg.rules) || "#";
+ var loc = cfg.clubLoc || "", dir = safeUrl(cfg.clubMap), src = embedSrc(cfg.mapEmbed);
+ $("clubAddr").textContent = loc ? "\uD83D\uDCCD " + loc : ""; $("clubAddr").hidden = !loc;
+ $("mapFrame").hidden = !src; if (src && $("mapFrame").getAttribute("src") !== src) $("mapFrame").src = src;
+ $("mapDir").style.display = dir ? "inline-block" : "none"; $("mapDir").href = dir || "#";
+ $("mapWrap").hidden = !(loc || dir || src);
+ var F = (cfg.faqs === undefined ? DEF_FAQ : list(cfg.faqs)).filter(function (x) { return x && x.q && x.a; }).slice(0, 6);
+ $("faq").hidden = !F.length; $("mFaq").hidden = !F.length;
+ $("faqList").innerHTML = F.map(function (x) { return "<details><summary>" + esc(x.q) + "</summary><p>" + esc(x.a).replace(/\n/g, "<br>") + "</p></details>"; }).join("");
+}
+var cfg = {};
+function apply(c) {
+ cfg = c || {};
+ var hi = $("hero"), tt = $("ttl");
+ hi.style.display = cfg.image ? "block" : "none"; tt.style.display = cfg.image ? "none" : "block";
+ if (cfg.image) { hi.src = fixImg(cfg.image); hi.onerror = function () { hi.style.display = "none"; tt.style.display = "block"; }; }
+ ["logo1", "logo2"].forEach(function (k) {
+  var im = $(k); im.style.display = cfg[k] ? "block" : "none";
+  if (cfg[k]) { im.src = fixImg(cfg[k]); im.onerror = function () { this.style.display = "none"; }; }
+ });
+ extra();
+ $("rules").href = safeUrl(cfg.rules) || "#";
+ $("contact").href = safeUrl(cfg.contact) || "#contactus";
+ var cs = list(cfg.contacts).filter(function (x) { return x && (x.name || x.phone || x.email); }).slice(0, 3);
+ $("cwrap").hidden = !(cs.length || !$("mapWrap").hidden);
+ $("cl").innerHTML = cs.map(function (x) {
+  return '<div class="ct"><b>' + esc(x.name) + '</b><span>' + esc(x.role) + '</span>' +
+   (x.phone ? '<a href="tel:' + esc(x.phone.replace(/[^\d+]/g, "")) + '">' + esc(x.phone) + '</a>' : "") +
+   (x.email ? '<a href="mailto:' + esc(x.email) + '">' + esc(x.email) + '</a>' : "") + "</div>";
+ }).join("");
+ $("ll").innerHTML = list(cfg.links).filter(function (x) { return x && x.label && safeUrl(x.url); }).slice(0, 6).map(function (x) {
+  return '<a class="glass" target="_blank" rel="noopener" href="' + esc(safeUrl(x.url)) + '">' + esc(x.label) + "</a>";
+ }).join("");
+}
+apply({});
+if (API.indexOf("http") === 0) fetch(API).then(function (r) { return r.json(); }).then(apply).catch(function () {});
+
+// ---- wizard ----
+var grades = ["Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12","Grade 13"];
+var D = { category: "", email: "", school: "", mname: "", mphone: "", members: [{}, {}, {}, {}] };
+var steps = [
+ { t: "Basic Details", f: [["email","Email","email","Your Email"],["school","School","text","Your School"],["category"]] },
+ { t: "Master-In-Charge Details", f: [["mname","Full Name","text","Your Answer"],["mphone","Phone No. (Whatsapp)","tel","Your Answer"]] }
+];
+["Captain's Details (Member 1)","Member 2 Details","Member 3 Details","Member 4 Details"].forEach(function (t, i) { steps.push({ t: t, m: i }); });
+var cur = 0;
+function field(id, label, type, ph, val) {
+ return '<div class="fld"><label for="' + id + '">' + label + '</label><input id="' + id + '" type="' + type + '" placeholder="' + ph + '" value="' + esc(val) + '"></div>';
+}
+function render() {
+ var s = steps[cur], h = "";
+ $("st").textContent = s.t;
+ if (s.m !== undefined) {
+  var m = D.members[s.m];
+  h = field("m_name", "Full Name", "text", "Your Answer", m.name) + field("m_email", "Email", "email", "Your Answer", m.email) +
+   field("m_dob", "Birthday", "date", "", m.dob) +
+   '<div class="fld"><label for="m_grade">Grade</label><select id="m_grade"><option value="">Select grade</option>' +
+   grades.map(function (g) { return "<option" + (m.grade === g ? " selected" : "") + ">" + g + "</option>"; }).join("") + "</select></div>" +
+   field("m_phone", "Phone No. (Whatsapp)", "tel", "Your Answer", m.phone);
+ } else {
+  s.f.forEach(function (x) {
+   if (x[0] === "category") h += '<div class="fld"><label>Category</label><div class="cats"><button type="button" class="cat' + (D.category === "Junior" ? " on" : "") + '" data-c="Junior">Junior Category</button><button type="button" class="cat' + (D.category === "Senior" ? " on" : "") + '" data-c="Senior">Senior Category</button></div></div>';
+   else h += field(x[0], x[1], x[2], x[3], D[x[0]]);
+  });
+ }
+ $("body").innerHTML = h;
+ [].forEach.call(document.querySelectorAll(".cat"), function (b) { b.onclick = function () { D.category = b.dataset.c; render(); }; });
+ $("prev").style.display = cur ? "" : "none";
+ $("next").textContent = cur === steps.length - 1 ? "Submit" : "Next";
+ $("next").className = cur ? "" : "solo";
+ show($("msg"), "", true);
+}
+function show(el, t, good) { el.textContent = t; el.className = "msg " + (good ? "ok" : "err"); }
+function read() {
+ var s = steps[cur], g = function (id) { return $(id).value.trim(); };
+ if (s.m !== undefined) D.members[s.m] = { name: g("m_name"), email: g("m_email"), dob: g("m_dob"), grade: $("m_grade").value, phone: g("m_phone") };
+ else s.f.forEach(function (x) { if (x[0] !== "category") D[x[0]] = g(x[0]); });
+}
+function valid() {
+ var s = steps[cur], vals = [], email = [], phone = [];
+ if (s.m !== undefined) { var m = D.members[s.m]; vals = [m.name, m.email, m.dob, m.grade, m.phone]; email = [m.email]; phone = [m.phone]; }
+ else s.f.forEach(function (x) { if (x[0] === "category") vals.push(D.category); else { vals.push(D[x[0]]); if (x[2] === "email") email.push(D[x[0]]); if (x[2] === "tel") phone.push(D[x[0]]); } });
+ if (vals.some(function (v) { return !v; })) return "All questions are required.";
+ if (email.some(function (v) { return !/^\S+@\S+\.\S+$/.test(v); })) return "Enter a valid email.";
+ if (phone.some(function (v) { return v.replace(/\D/g, "").length < 9; })) return "Enter a valid phone number.";
+ return "";
+}
+function post(o) {
+ return fetch(API, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(o) }).then(function (r) { return r.json(); });
+}
+$("prev").onclick = function () { read(); if (cur) { cur--; render(); } };
+$("f").addEventListener("submit", function (e) {
+ e.preventDefault(); read();
+ var err = valid(); if (err) return show($("msg"), err, false);
+ if (cur < steps.length - 1) { cur++; render(); $("card").scrollIntoView({ block: "start" }); return; }
+ if (API.indexOf("http") !== 0) return show($("msg"), "Site is not connected to the spreadsheet yet.", false);
+ show($("msg"), "Sending...", true);
+ post({ action: "register", p: { category: D.category, school: D.school, masterName: D.mname, masterPhone: D.mphone, masterEmail: D.email, members: D.members } })
+  .then(function (r) {
+   if (r.ok) $("card").innerHTML = '<div class="done"><h2>Thank you!</h2><p>Your team has been registered for Mind Probe 2026.</p></div>';
+   else show($("msg"), "Could not save. Try again.", false);
+  }).catch(function () { show($("msg"), "Network error. Try again.", false); });
+});
+render();
+
+// ---- hidden admin panel: open with  yoursite/#admin  or Ctrl+Shift+L ----
+var mb = $("mbtn"), mn = $("menu");
+function menu(o) { mn.hidden = !o; mb.classList.toggle("open", o); mb.setAttribute("aria-expanded", o); }
+mb.onclick = function (e) { e.stopPropagation(); menu(mn.hidden); };
+mn.onclick = function (e) { if (e.target.tagName === "A") menu(false); };
+document.addEventListener("click", function (e) { if (!mn.hidden && !mn.contains(e.target)) menu(false); });
+document.addEventListener("keydown", function (e) { if (e.key === "Escape") menu(false); });
+var authed = false;
+function row2(cls, vals, ph) {
+ return '<div class="two">' + vals.map(function (v, i) { return '<input class="' + cls + '" data-i="' + i + '" placeholder="' + ph[i] + '" value="' + esc(v) + '">'; }).join("") + "</div>";
+}
+function buildEdit() {
+ var L = list(cfg.links), C = list(cfg.contacts), h = "";
+ h += '<h4>Logos and headline image (links)</h4>';
+ [["logo1", "Logo 1 (top left)"], ["logo2", "Logo 2 (top left)"], ["image", "Headline image"]].forEach(function (x) {
+  h += '<input id="e_' + x[0] + '" placeholder="' + x[1] + ' link" value="' + esc(cfg[x[0]]) + '">';
+ });
+ h += '<h4>Main links</h4><input id="e_rules" placeholder="Rules and regulations link (Google Drive)" value="' + esc(cfg.rules) + '">' +
+  '<input id="e_contact" placeholder="Contact us link (mailto: or web link)" value="' + esc(cfg.contact) + '">';
+ h += '<h4>Extra links (label and link, shown at bottom)</h4>';
+ for (var i = 0; i < 4; i++) { var l = L[i] || {}; h += row2("el", [l.label, l.url], ["Label", "https://..."]); }
+ h += '<h4>Contact list (up to 3)</h4>';
+ for (i = 0; i < 3; i++) { var c = C[i] || {}; h += row2("ec", [c.name, c.role, c.phone, c.email], ["Name", "Role", "Phone", "Email"]).replace('class="two"', 'class="two" style="margin-bottom:6px"'); }
+
+ var v = function (k) { return esc(cfg[k]); };
+ h += '<h4>Contact map (quiz club location)</h4><input id="e_clubLoc" placeholder="Address or place name" value="' + v("clubLoc") + '"><input id="e_mapEmbed" placeholder="Google Maps embed code (Share, Embed a map)" value="' + v("mapEmbed") + '"><input id="e_clubMap" placeholder="Directions link (Google Maps share link)" value="' + v("clubMap") + '">';
+ h += '<h4>FAQ (up to 6)</h4>';
+ var FQ = cfg.faqs === undefined ? DEF_FAQ : list(cfg.faqs);
+ for (var k2 = 0; k2 < 6; k2++) { var q = FQ[k2] || {}; h += '<input class="eq" placeholder="Question ' + (k2 + 1) + '" value="' + esc(q.q) + '"><textarea class="ea" placeholder="Answer">' + esc(q.a) + '</textarea>'; }
+ $("edit").innerHTML = h; $("edit").style.display = "block";
+}
+function collect() {
+ var s = {};
+ ["logo1", "logo2", "image", "rules", "contact", "clubLoc", "clubMap", "mapEmbed"].forEach(function (k) { s[k] = $("e_" + k).value.trim(); });
+ var rows = function (cls, n) {
+  var out = [], ins = document.querySelectorAll("." + cls);
+  for (var i = 0; i < ins.length; i += n) { var o = []; for (var j = 0; j < n; j++) o.push(ins[i + j].value.trim()); out.push(o); }
+  return out;
+ };
+ s.links = JSON.stringify(rows("el", 2).filter(function (r) { return r[0] || r[1]; }).map(function (r) { return { label: r[0], url: r[1] }; }));
+ s.contacts = JSON.stringify(rows("ec", 4).filter(function (r) { return r.some(Boolean); }).map(function (r) { return { name: r[0], role: r[1], phone: r[2], email: r[3] }; }));
+ var qs = document.querySelectorAll(".eq"), as = document.querySelectorAll(".ea"), fq = [];
+ for (var n = 0; n < qs.length; n++) if (qs[n].value.trim() && as[n].value.trim()) fq.push({ q: qs[n].value.trim(), a: as[n].value.trim() });
+ s.faqs = JSON.stringify(fq);
+ return s;
+}
+function openAdmin() { if (!$("dlg").open) $("dlg").showModal(); }
+if (location.hash === "#admin") openAdmin();
+window.addEventListener("hashchange", function () { if (location.hash === "#admin") openAdmin(); });
+document.addEventListener("keydown", function (e) { if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "l") openAdmin(); });
+$("close").onclick = function () { $("dlg").close(); if (location.hash === "#admin") history.replaceState(null, "", location.pathname); };
+$("af").addEventListener("submit", function (e) {
+ e.preventDefault();
+ var m = $("amsg");
+ if (API.indexOf("http") !== 0) return show(m, "Connect the web app URL first.", false);
+ if (!$("pw").value) return show(m, "Enter the password.", false);
+ if (!authed) {
+  show(m, "Checking...", true);
+  post({ action: "login", password: $("pw").value }).then(function (r) {
+   if (!r.ok) return show(m, "Wrong password.", false);
+   authed = true; buildEdit(); $("abtn").textContent = "Save changes"; show(m, "Logged in. Edit and save.", true);
+  }).catch(function () { show(m, "Network error.", false); });
+ } else {
+  var s = collect();
+  post({ action: "save", password: $("pw").value, settings: s }).then(function (r) {
+   if (r.ok) { apply(s); show(m, "Saved. Site updated for everyone.", true); } else show(m, "Not saved: " + (r.error || "error"), false);
+  }).catch(function () { show(m, "Network error.", false); });
+ }
+});
+</script>
+</body>
+</html>
