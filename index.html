@@ -124,7 +124,7 @@ button,input,select,textarea{font-family:"DM Sans",system-ui,sans-serif}
 <header class="top"><img id="logo1" alt="Logo"><img id="logo2" alt="Logo"></header>
 
 <section class="hero">
- <img id="hero" alt="Mind Probe 2026" style="display:none">
+ <img id="hero" alt="Mind Probe 2026" style="display:none" fetchpriority="high" decoding="async">
  <h1 class="ttl" id="ttl">Mind<span>Probe'26</span></h1>
  <p class="tag">The ultimate odyssey for unique excellence.<br>The largest quiz day organized by a school in Sri Lanka</p>
  <div class="hb">
@@ -174,6 +174,8 @@ button,input,select,textarea{font-family:"DM Sans",system-ui,sans-serif}
 
 <script>
 // ===== Paste your Apps Script web app URL here =====
+// Default Rules and Regulations link (the admin panel can override it)
+var RULES_URL = "https://drive.google.com/file/d/1tsl4h0VV2_lHzFrlPXMXHlExdtwfdymx/view?usp=drive_link";
 var API = "https://script.google.com/macros/s/AKfycbwthWh-7wrM0vCFM-yRmMmtxEFP_Nho7TtrL0s7UtvB2VviREtCHRnGDj1CEPXPlywn/exec";
 // ===================================================
 var $ = function (id) { return document.getElementById(id); };
@@ -186,10 +188,20 @@ function safeUrl(u) { return /^(https?:|mailto:|tel:|#)/i.test(u || "") ? u : ""
 function list(v) { try { var a = JSON.parse(v); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
 
 function embedSrc(v) { var m = /src=["']([^"']+)["']/.exec(v || ""), u = m ? m[1] : (v || "").trim(); return /^https:\/\/(www\.)?google\.com\/maps\/embed/.test(u) ? u : ""; }
+function qFrom(u) {
+ u = u || ""; var m = /\/maps\/place\/([^\/@?]+)/.exec(u);
+ if (m) { try { return decodeURIComponent(m[1].replace(/\+/g, " ")); } catch (e) {} }
+ m = /@(-?\d+\.\d+),(-?\d+\.\d+)/.exec(u); return m ? m[1] + "," + m[2] : "";
+}
+function mapSrc() {
+ var e = embedSrc(cfg.mapEmbed); if (e) return e;
+ var q = qFrom(cfg.mapEmbed) || qFrom(cfg.clubMap) || cfg.clubLoc || "";
+ return q ? "https://www.google.com/maps?q=" + encodeURIComponent(q) + "&output=embed" : "";
+}
 var DEF_FAQ = [{ q: "How to register for Mind Probe?", a: "Tap Register Now, complete every step of the form and submit it." }, { q: "Who can take part?", a: "Each team has four members: a captain and three more students. Choose the Junior or Senior category when you register." }];
 function extra() {
- $("mRules").href = safeUrl(cfg.rules) || "#";
- var loc = cfg.clubLoc || "", dir = safeUrl(cfg.clubMap), src = embedSrc(cfg.mapEmbed);
+ $("mRules").href = safeUrl(cfg.rules) || RULES_URL;
+ var loc = cfg.clubLoc || "", dir = safeUrl(cfg.clubMap), src = mapSrc();
  $("clubAddr").textContent = loc ? "\uD83D\uDCCD " + loc : ""; $("clubAddr").hidden = !loc;
  $("mapFrame").hidden = !src; if (src && $("mapFrame").getAttribute("src") !== src) $("mapFrame").src = src;
  $("mapDir").style.display = dir ? "inline-block" : "none"; $("mapDir").href = dir || "#";
@@ -209,7 +221,7 @@ function apply(c) {
   if (cfg[k]) { im.src = fixImg(cfg[k]); im.onerror = function () { this.style.display = "none"; }; }
  });
  extra();
- $("rules").href = safeUrl(cfg.rules) || "#";
+ $("rules").href = safeUrl(cfg.rules) || RULES_URL;
  $("contact").href = safeUrl(cfg.contact) || "#contactus";
  var cs = list(cfg.contacts).filter(function (x) { return x && (x.name || x.phone || x.email); }).slice(0, 3);
  $("cwrap").hidden = !(cs.length || !$("mapWrap").hidden);
@@ -223,7 +235,8 @@ function apply(c) {
  }).join("");
 }
 apply({});
-if (API.indexOf("http") === 0) fetch(API).then(function (r) { return r.json(); }).then(apply).catch(function () {});
+try { var cached = JSON.parse(localStorage.getItem("mp_cfg") || "null"); if (cached) apply(cached); } catch (e) {}
+if (API.indexOf("http") === 0) fetch(API).then(function (r) { return r.json(); }).then(function (c) { apply(c); try { localStorage.setItem("mp_cfg", JSON.stringify(c)); } catch (e) {} }).catch(function () {});
 
 // ---- wizard ----
 var grades = ["Grade 6","Grade 7","Grade 8","Grade 9","Grade 10","Grade 11","Grade 12","Grade 13"];
@@ -318,7 +331,7 @@ function buildEdit() {
  for (i = 0; i < 3; i++) { var c = C[i] || {}; h += row2("ec", [c.name, c.role, c.phone, c.email], ["Name", "Role", "Phone", "Email"]).replace('class="two"', 'class="two" style="margin-bottom:6px"'); }
 
  var v = function (k) { return esc(cfg[k]); };
- h += '<h4>Contact map (quiz club location)</h4><input id="e_clubLoc" placeholder="Address or place name" value="' + v("clubLoc") + '"><input id="e_mapEmbed" placeholder="Google Maps embed code (Share, Embed a map)" value="' + v("mapEmbed") + '"><input id="e_clubMap" placeholder="Directions link (Google Maps share link)" value="' + v("clubMap") + '">';
+ h += '<h4>Contact map (quiz club location)</h4><input id="e_clubLoc" placeholder="Address or place name" value="' + v("clubLoc") + '"><input id="e_mapEmbed" placeholder="Optional: map embed code or Google Maps link" value="' + v("mapEmbed") + '"><input id="e_clubMap" placeholder="Directions link (Google Maps share link)" value="' + v("clubMap") + '">';
  h += '<h4>FAQ (up to 6)</h4>';
  var FQ = cfg.faqs === undefined ? DEF_FAQ : list(cfg.faqs);
  for (var k2 = 0; k2 < 6; k2++) { var q = FQ[k2] || {}; h += '<input class="eq" placeholder="Question ' + (k2 + 1) + '" value="' + esc(q.q) + '"><textarea class="ea" placeholder="Answer">' + esc(q.a) + '</textarea>'; }
@@ -358,7 +371,7 @@ $("af").addEventListener("submit", function (e) {
  } else {
   var s = collect();
   post({ action: "save", password: $("pw").value, settings: s }).then(function (r) {
-   if (r.ok) { apply(s); show(m, "Saved. Site updated for everyone.", true); } else show(m, "Not saved: " + (r.error || "error"), false);
+   if (r.ok) { apply(s); try { localStorage.setItem("mp_cfg", JSON.stringify(s)); } catch (e) {} show(m, "Saved. Site updated for everyone.", true); } else show(m, "Not saved: " + (r.error || "error"), false);
   }).catch(function () { show(m, "Network error.", false); });
  }
 });
